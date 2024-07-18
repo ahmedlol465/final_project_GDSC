@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Slider</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.review-slider {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    overflow: hidden;
+    background-color: antiquewhite;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cap p {
+    font-size: 15px;
+    width: 400px;
+    margin: 20px auto;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="review-slider">
+    <div class="review-content">
+        <img id="review-img" src="Mask group.png" width="100px" height="100px" style="position: relative; top: 65px;" />
+        <div class="start" style="display: flex; position: relative; left: 600px; top: 60px;">
+            <img src="star.png"/>
+            <img src="star.png"/>
+            <img src="star.png"/>
+            <img src="star.png"/>
+            <img src="star.png"/>
+        </div>
+        <div class="cap">
+            <p id="review-des">Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam sit. Vitae congue ultrices neque penatibus mi in quisque. Leo in cursus enim magnis ante. Proin iaculis platea ipsum sagittis ac eu aliquam quis. Ornare tincidunt tempus semper</p>
+            <h2 id="review-name">Ama Ampomah</h2>
+            <h3 id="review-position">CEO & Founder Inc</h3>
+        </div>
+    </div>
+    <button class="prev" onclick="moveReview(-1)">&#10094;</button>
+    <button class="next" onclick="moveReview(1)">&#10095;</button>
+</div>
+
+<script src="script.js">
+
+
+const reviews = [
+    {
+        id: 1,
+        des: "Lorem ipsum dolor sit amet consectetur.Tortor massa nisl quam sit.Vitae congue ultrices neque penatibus mi in quisque.Leo in cursus enim magnis ante.Proin iaculis platea ipsum sagittis ac eu aliquam quis.Ornare tincidunt tempus semper",
+        name: "Ama Ampomah",
+        position: 'CEO & Founder Inc '
+    },
+    {
+        id: 2,
+        des: "Lorem ipsum dolor sit amet consectetur.Tortor massa nisl quam sit.Vitae congue ultrices neque penatibus mi in quisque.Leo in cursus enim magnis ante.Proin iaculis platea ipsum sagittis ac eu aliquam quis.Ornare tincidunt tempus semper",
+        name: "John Doe",
+        position: 'CTO of TechCorp'
+    },
+    {
+        id: 3,
+        des: "Lorem ipsum dolor sit amet consectetur.Tortor massa nisl quam sit.Vitae congue ultrices neque penatibus mi in quisque.Leo in cursus enim magnis ante.Proin iaculis platea ipsum sagittis ac eu aliquam quis.Ornare tincidunt tempus semper",
+        name: "Jane Smith",
+        position: 'Marketing Head'
+    },
+];
+
+let currentReview = 0;
+
+function showReview(index) {
+    if (index >= reviews.length) {
+        currentReview = 0;
+    } else if (index < 0) {
+        currentReview = reviews.length - 1;
+    } else {
+        currentReview = index;
+    }
+    document.getElementById('review-des').innerText = reviews[currentReview].des;
+    document.getElementById('review-name').innerText = reviews[currentReview].name;
+    document.getElementById('review-position').innerText = reviews[currentReview].position;
+    console.log('Showing review:', currentReview);
+}
+
+function moveReview(step) {
+    console.log('Move review by:', step);
+    showReview(currentReview + step);
+}
+
+// Initialize the slider
+showReview(currentReview);
+
+
+</script>
+
+</body>
+</html>

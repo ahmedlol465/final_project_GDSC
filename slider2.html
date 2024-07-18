@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #191919;
+        }
+        .gallery {
+            width: 900px;
+            display: flex;
+            overflow-x: scroll;
+        }
+        .gallery div {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 20px;
+            padding: 10px;
+            flex: none;
+        }
+        .gallery div img {
+            /* width: 100%; */
+            width: 200px;
+            height: 200px;
+            filter: grayscale(100%);
+            transition: transform 0.5s;
+        }
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10% auto;
+
+        }
+
+        .gallery div img:hover {
+            filter: grayscale(0);
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        button {
+            width: 50px;
+            cursor: pointer;
+            margin: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-wrap">
+        <button id="backBtn" class="prev" onclick="prevSlide()">&#10094</button>
+
+        <div class="gallery">
+            <div style="display: flex; padding: 10px;">
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+            <div>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+                <span><img src="chef 1.png"/></span>
+            </div>
+           
+        </div>
+    
+    
+        <button id="frontBtn" class="next" onclick="nextSlide()">&#10095</button>
+    
+    
+        <script>
+            let scrollController = document.querySelector(".gallery");
+            let backBtn = document.getElementById("backBtn");
+            let frontBtn = document.getElementById("frontBtn");
+            let index = 0;
+    
+            scrollController.addEventListener("wheel", (evt) => {
+                evt.preventDefault();
+                scrollController.scrollLeft += evt.deltaY;
+            })
+
+            frontBtn.addEventListener("click", () => {
+                scrollController.style.scrollBehavior = "smooth";
+                scrollController.scrollLeft += 300
+            })
+            backBtn.addEventListener("click", () => {
+                scrollController.style.scrollBehavior = "smooth";
+                scrollController.scrollLeft -= 300
+            })
+
+        </script>
+</body>
+</html>
